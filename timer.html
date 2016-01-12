@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>
+Timer 
+
+</title>
+
+</head>
+<body>
+<input type="Button" value="break" >	
+	<select id="breaktime">
+<option value="12000" >First Break</option>
+<option value="3600">Second Break</option>
+<option value="12000">Last Break</option>
+</select>
+</br>
+
+  
+<input type="button" value="start timer" onclick="timer()" id="timer" name="timer">
+<script>
+var count = 1200;
+var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+
+function timer() {
+    count = count - 1;
+    if (count == -1) {
+        clearInterval(counter);
+        return;
+    }
+
+    var seconds = count % 60;
+    var minutes = Math.floor(count / 60);
+    var hours = Math.floor(minutes / 60);
+    minutes %= 60;
+    hours %= 60;
+
+   
+    document.getElementById("timer").innerHTML = hours + "hours " + minutes + "minutes and" + seconds + " minutes!!";
+}
+    </script>
+    </body>
+
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Start and Stop a Timer using JavaScript by DevCurry.com</title>
+       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+       <script type="text/javascript"></script>
+	   <script>
+      $(function () {
+            $("#mySelect").change(function () {
+            var selectedText = $(this).find("option:selected").text();
+            var selectedValue = $(this).val();
+            alert(selectedValue);
+              });
+            });
+       </script>
+       
+       <script>
+	   function brkconf(){
+		alart("Are Yor Sure You Want A Break Now?")
+         }
+	   </script>
+</head>
+<body>
+
+	<input type="button" value="Break" onclick="brkconf()">
+	
+	
+
+     <select id="mySelect">
+      <option value="1200">First Break</option>
+       <option value="3600">Second Break</option>
+      <option value="1200">Last Break</option>
+    </select>
+    
+
+
+</html>
