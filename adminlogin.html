@@ -1,56 +1,65 @@
-<html>
+<html >
 <head>
-	
-	
-<title> Welcome Admin</title>
-<!--adding library -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<title>Timer</title>
 <script type="text/javascript">
-
-	$(document).ready(function(){
-	$('#btn1').click(function() {
-		//alert("till now o0k");
-		var name = $('#name').val();
-		var pass = $('#password').val();
-		//alert(name);
-		//alert(pass);
-		var login = $('#btn1').val();
-		
-		
-			$.post('adminlogin.php',{name: name, password: pass, btn: login}, function(data){
-			$('#ffuu').html(data);
-			}
-			);
-		
-	});
-});
-
-
-
-
-
+ 
+window.setTimeout("Tick()", 1000);
+var Timer;
+var TotalSeconds;
+ 
+function CreateTimer(TimerID, Time) {
+    Timer = document.getElementById(TimerID);
+    TotalSeconds = Time;
+    UpdateTimer()
+    window.setTimeout("Tick()", 1000);
+}
+ 
+function Tick() {
+    if (TotalSeconds <= 0) {
+        alert("Time's up!")
+        return;
+    }
+    TotalSeconds -= 1;
+    UpdateTimer()
+    window.setTimeout("Tick()", 1000);
+}
+ 
+function UpdateTimer() {
+    var Seconds = TotalSeconds;
+    var Hours = Math.floor(Seconds / 3600);
+    Seconds -= Hours * (3600);
+    var Minutes = Math.floor(Seconds / 60);
+    Seconds -= Minutes * (60);
+    var TimeStr = ((Days > 0) ? Days + " days " : "") + LeadingZero(Hours) + ":" + LeadingZero(Minutes) + ":" + LeadingZero(Seconds)
+    Timer.innerHTML = TimeStr;
+}
+ 
+ 
+function LeadingZero(Time) {
+    return (Time < 10) ? "0" + Time : + Time;
+}
+ 
+function Click(){
+    alert("hello")
+}
+ 
 </script>
-
 </head>
+ 
 <body>
-
-
-
-Enter Name:<input type="text" name="name" id="name">
-<br>
-Enter Password:<input type="password" name="password" id="password">
-
-<br>
-
-<input type="submit" value="login" name="btn1"  id="btn1">
-
-
-<div id="ffuu"></div>
-
-
-
-
+ 
+<h1>Countdown Clock</h1>
+<p>00:20:00</p>
+ 
+<div id='timer'>
+</div>
+<tr>
+   <td align="left" colspan="1">
+      <input type="submit" value="Start Countdown" onClick="CreateTimer('timer', 1200)">
+   </td>
+</tr>
+ 
+<!--<script type="text/javascript">window.onload = CreateTimer("timer", 1200);</script>
+//-->
 </body>
-
 </html>

@@ -1,43 +1,99 @@
 <html>
 <head>
-<title>
-Timer 
+    <title>Break Time</title>
+       <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+       <script type="text/javascript"></script>
+	  
+	  
+ <script>
+		   
+	//Script For Get Time Limit From Dropdown	   
+		   
+      $(function () {
+            $("#mySelect").change(function () {
+            var selectedText = $(this).find("option:selected").text();
+            var selectedValue = $(this).val();
+            alert(selectedValue);
+              });
+            });
+</script>
 
-</title>
+   <script>
+	   //Countdown Timer Script	
+   		   var CCOUNT;
+                 $(document).ready(function () 
+                 {
+                    $('#btnct').click(function ()
+                       {
+                         CCOUNT = $('#seconds').val();
+                          cdreset();
+                       });
+                  });
+           var t, count;
+              function cddisplay()
+              {
+                  document.getElementById('timespan').innerHTML = count;
+              }
+              
+              function countdown() 
+              {
+                     // starts countdown
+                        cddisplay();
+                        if (count === 0)
+                        {
+                    // time is up
+                        } 
+                        else
+                        {
+                        count--;
+                          t = setTimeout(countdown, 1000);
+                        }
+              }
+              
+              
+            function cdpause()
+            {
+               // pauses countdown
+                 clearTimeout(t);
+            }
+            
+            function cdreset() 
+            {
+            // resets countdown
+               cdpause();
+               count = CCOUNT;
+              cddisplay();
+            }  
+		</script>   
 
-</head>
+<head>
 <body>
-<input type="Button" value="break" >	
-	<select id="breaktime">
-<option value="12000" >First Break</option>
-<option value="3600">Second Break</option>
-<option value="12000">Last Break</option>
-</select>
+	
+ <!-- Set The Time For Break	-->
+  Seconds:
+    <input type="text" id="seconds" name="seconds" value="0" size="2" maxlength="2" />
+    <br/>
+    <input type="button" id="btnct" value="Input" />
+
+      <span id="timespan"></span>
+
+
+    <input type="button" value="Start" onclick="countdown()">
+    <input type="button" value="Stop" onclick="cdpause()">
+    <input type="button" value="Reset" onclick="cdreset()">
+
+
 </br>
-
-  
-<input type="button" value="start timer" onclick="timer()" id="timer" name="timer">
-<script>
-var count = 1200;
-var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
-
-function timer() {
-    count = count - 1;
-    if (count == -1) {
-        clearInterval(counter);
-        return;
-    }
-
-    var seconds = count % 60;
-    var minutes = Math.floor(count / 60);
-    var hours = Math.floor(minutes / 60);
-    minutes %= 60;
-    hours %= 60;
+<!-- Select The Break	-->
+     <select id="mySelect">
+	      <option value="">Select The Break</option>
+          <option value="1200">First Break</option>
+          <option value="3600">Second Break</option>
+          <option value="1200">Last Break</option>
+    </select>
 
    
-    document.getElementById("timer").innerHTML = hours + "hours " + minutes + "minutes and" + seconds + " minutes!!";
-}
-    </script>
-    </body>
-
+ </body>  
+</head>
 </html>

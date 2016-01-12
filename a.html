@@ -1,9 +1,15 @@
-<html>
+  <html>
 <head>
-    <title>Start and Stop a Timer using JavaScript by DevCurry.com</title>
+    <title>Break Time</title>
+       <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
        <script type="text/javascript"></script>
-	   <script>
+	  
+	  
+ <script>
+		   
+	//Script For Get Time Limit From Dropdown	   
+		   
       $(function () {
             $("#mySelect").change(function () {
             var selectedText = $(this).find("option:selected").text();
@@ -11,26 +17,84 @@
             alert(selectedValue);
               });
             });
-       </script>
-       
-       <script>
-	   function brkconf(){
-		alart("Are Yor Sure You Want A Break Now?")
-         }
-	   </script>
-</head>
+</script>
+
+   <script>
+	   //Countdown Timer Script	
+   		   var CCOUNT;
+                 $(document).ready(function () 
+                 {
+                    $('#btnct').click(function ()
+                       {
+                         CCOUNT = $('#seconds').val();
+                          cdreset();
+                       });
+                  });
+           var t, count;
+              function cddisplay()
+              {
+                  document.getElementById('timespan').innerHTML = count;
+              }
+              
+              function countdown() 
+              {
+                     // starts countdown
+                        cddisplay();
+                        if (count === 0)
+                        {
+                    // time is up
+                        } 
+                        else
+                        {
+                        count--;
+                          t = setTimeout(countdown, 1000);
+                        }
+              }
+              
+              
+            function cdpause()
+            {
+               // pauses countdown
+                 clearTimeout(t);
+            }
+            
+            function cdreset() 
+            {
+            // resets countdown
+               cdpause();
+               count = CCOUNT;
+              cddisplay();
+            }  
+		</script>   
+
+<head>
 <body>
-
-	<input type="button" value="Break" onclick="brkconf()">
 	
-	
+ <!-- Set The Time For Break	-->
+  Seconds:
+    <input type="text" id="seconds" name="seconds" value="0" size="4" maxlength="4" />
+    <br/>
+    <input type="button" id="btnct" value="Input" />
 
+      <span id="timespan"></span>
+
+
+    <input type="button" value="Start" onclick="countdown()">
+    <input type="button" value="Stop" onclick="cdpause()">
+    <input type="button" value="Reset" onclick="cdreset()">
+
+
+</br>
+<!-- Select The Break	-->
      <select id="mySelect">
-      <option value="1200">First Break</option>
-       <option value="3600">Second Break</option>
-      <option value="1200">Last Break</option>
+	      <option value="">Select The Break</option>
+          <option value="1200">First Break</option>
+          <option value="3600">Second Break</option>
+          <option value="1200">Last Break</option>
     </select>
-    
 
-
+   
+ </body>  
+</head>
 </html>
+
