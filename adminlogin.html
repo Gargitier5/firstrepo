@@ -1,0 +1,56 @@
+<html>
+<head>
+	
+	
+<title> Welcome Admin</title>
+<!--adding library -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+	$('#btn1').click(function() {
+		//alert("till now o0k");
+		var name = $('#name').val();
+		var pass = $('#password').val();
+		//alert(name);
+		//alert(pass);
+		var login = $('#btn1').val();
+		
+		
+			$.post('adminlogin.php',{name: name, password: pass, btn: login}, function(data){
+			$('#ffuu').html(data);
+			}
+			);
+		
+	});
+});
+
+
+
+
+
+</script>
+
+</head>
+<body>
+
+
+
+Enter Name:<input type="text" name="name" id="name">
+<br>
+Enter Password:<input type="password" name="password" id="password">
+
+<br>
+
+<input type="submit" value="login" name="btn1"  id="btn1">
+
+
+<div id="ffuu"></div>
+
+
+
+
+</body>
+
+</html>
